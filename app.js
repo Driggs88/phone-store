@@ -4,12 +4,18 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+const mongoose     = require('mongoose');
 
 var index = require('./routes/index');
 var phonesApi = require('./routes/phones-api');
 require('./configs/database');
+var cors = require('cors');
+
+mongoose.connect('mongodb://localhost:27017/phone-store');
 
 var app = express();
+
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
